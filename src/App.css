@@ -1,0 +1,102 @@
+html, body {
+  padding: 0px;
+  height: 100%;
+  margin: 0;
+  font-family:'Courier New', Courier, monospace;
+}
+
+
+.logo-left-nav{
+  border-bottom: 1px solid #ccc;
+  height: 57px;
+}
+
+.logo-vertical{
+  height: 56px;
+  width: 70px;
+  background: url('/images/logoclear.png') left center no-repeat;
+  background-size: 70px 50px;
+} 
+
+.logo-text {
+  padding: 14px 0px 0px 14px;
+  width: 100%;
+  text-align: center;
+  color: #f6f6f6;
+  font-size: 19px;
+}
+
+.ant-layout-sider-collapsed .logo-text {
+  display: none;
+}
+
+.menu-left{
+  padding: 0px;
+  margin: 0px;
+  width: 100%;
+}
+
+.menu-left li {
+  display: block;
+  height: 40px;
+  padding-top: 10px;
+  color: #f6f6f6;
+  padding-left: 10px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.menu-left li:hover {
+  background-color: #ccc;
+  color: #000;
+}
+
+.menu-left li.selected {
+  background-color: rgb(21, 24, 30);
+  color: #f6f6f6;
+}
+
+.ant-layout-sider-collapsed .menu-left li{
+  font-size: 30px;
+  padding-top: 0px;
+  padding-left: 20px;
+} 
+
+.ant-layout-sider-collapsed .menu-left li span.menu-txt{
+  display: none;
+}
+
+.mt-10{
+  margin-top: 10px;
+}
+
+.letter-search{ 
+  background-color: rgb(21, 24, 30);
+  color: #f6f6f6;
+  cursor: pointer;
+  border: none;
+  padding: 7px;
+  font-size: 15px;
+}
+
+
+.letter-search:hover{ 
+
+  background-color: #f6f6f6 ;
+  color: rgb(21, 24, 30);
+  
+}
+
+.wrapper {
+  min-height: 100%;
+  margin-bottom: -60px;
+}
+ .push {
+  height: 50px;
+}
+
+.footer {
+  height: 50px;
+  width: 100%;
+}
+
