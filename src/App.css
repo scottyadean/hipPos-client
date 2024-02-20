@@ -70,6 +70,15 @@ html, body {
   margin-top: 10px;
 }
 
+.link{
+  margin-left: 5px;
+  color:rgb(50, 74, 122);
+}
+
+.cat-list{
+  padding: 5px;
+}
+
 .letter-search{ 
   background-color: rgb(21, 24, 30);
   color: #f6f6f6;
@@ -81,7 +90,6 @@ html, body {
 
 
 .letter-search:hover{ 
-
   background-color: #f6f6f6 ;
   color: rgb(21, 24, 30);
   

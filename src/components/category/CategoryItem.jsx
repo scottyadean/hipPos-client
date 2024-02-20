@@ -1,5 +1,4 @@
 import PropTypes from 'prop-types';
-import { List } from 'antd';
 import { HomeOutlined, SunOutlined } from '@ant-design/icons'
 
 
@@ -11,22 +10,16 @@ const getIcon = (name)=> {
 
 export default function CategoryItem(props) {
     const { data, callback } = props;
-    return (
-            <List
-                itemLayout="horizontal"
-                dataSource={data}
-                renderItem={(item, index) => (
-                <List.Item>
-                    <List.Item.Meta
-                    avatar={getIcon(item.image)}
-                    title={<a href="#" data-index={index} onClick={callback} data-id={item._id} >{item.name}</a>}
-                    description={item.description}
-                    />
-                </List.Item>
-                )}
-            />
-
-  )
+    const ListItem = (item, index) => {
+        return (<div className='cat-list'>
+                    {getIcon(item.image)} 
+                    <a href="javascript:void(0)" className='link' data-index={index} onClick={callback} data-id={item._id} >{item.name}</a> 
+                </div>);
+    }
+    
+    return (<div>                
+                {data.map((item, idx)=>ListItem(item, idx))}
+            </div>)
 }
 
 

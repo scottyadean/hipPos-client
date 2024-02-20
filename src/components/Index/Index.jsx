@@ -1,14 +1,27 @@
+import { Row, Col } from 'antd';
 import CategoryList from "../category/CategoryList"
 import ItemList from "../item/ItemList"
 import ItemLetterSearch from '../item/ItemLetterSearch';
-import ItemKeyWordSearch from '../item/ItemKeyWordSearch';
+
 export default function Index() {
   return (
     <>
       <div className="wrapper">
-        <CategoryList />
-        <ItemKeyWordSearch />
-        <ItemList />  
+      
+    <Row>
+        <Col span={6}>
+          <CategoryList />
+        </Col>
+        <Col span={6}>
+          <ItemList />  
+        </Col>
+        <Col span={12}>
+          TEST
+        </Col>
+    </Row>
+
+
+
         <div className="push"></div>  
       </div>
       <footer className="footer">

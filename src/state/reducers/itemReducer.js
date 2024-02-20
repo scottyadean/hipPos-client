@@ -30,11 +30,19 @@ export const filterItemsByLetterReducer = ( state, action ) => {
     state.data = state.rows.filter((r) => startsWith(r.name, letter) );
 };
 
+export const filterItemsByKeywordReducer = ( state, action ) => {
+    const containsValue = (str, term) => {
+        return str.toLowerCase().includes(term.toLowerCase());
+    }
+    const term = action.payload.term;
+    state.data = state.rows.filter((r) => containsValue(r.name, term) );
+};
+
 export const selectItemById = ( state, action ) => {
-
-    selected
+    const id = action.payload.id;
+    const item = state.rows.filter((r) => r.id === id );
+    state.selected = item[0]; 
 }
-
 
 export const ItemSlice = createSlice({
     name: "item",
@@ -42,9 +50,10 @@ export const ItemSlice = createSlice({
     reducers:{
         setItem: setItemsReducer,
         filterByCategoryItems: filterItemsByCatReducer,
-        filterItemsByLetter: filterItemsByLetterReducer, 
+        filterItemsByLetter: filterItemsByLetterReducer,
+        filterItemsByKeyword: filterItemsByKeywordReducer,
     }
 });
 
-export const { setItem, filterByCategoryItems, filterItemsByLetter } = ItemSlice.actions;
+export const { setItem, filterByCategoryItems, filterItemsByLetter, filterItemsByKeyword } = ItemSlice.actions;
 export default ItemSlice.reducer;

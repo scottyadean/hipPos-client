@@ -5,10 +5,8 @@ export default function ItemList() {
     const items = useSelector((state) => state.items)  
     return (
     <div>
-        <h3>ItemList</h3>
-        
+        <h3>Items</h3>
         { items.data.map( i=> (  <div key={i._id}> {i.name} </div>  ) )  }
-        
         </div>
   )
 }

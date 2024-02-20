@@ -1,18 +1,11 @@
 /* eslint-disable react/prop-types */
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import {
-  MenuFoldOutlined,
-  MenuUnfoldOutlined,
-  ShopOutlined,
-  TagsOutlined,
-  ScanOutlined,
-  WalletOutlined,
-} from '@ant-design/icons';
-
+import { MenuFoldOutlined, MenuUnfoldOutlined, ShopOutlined } from '@ant-design/icons';
+import { TagsOutlined, ScanOutlined, WalletOutlined } from '@ant-design/icons';
 import { ConfigProvider } from 'antd';
 import { Layout, Button, Col, Row } from 'antd';
-
+import ItemKeyWordSearch from '../item/ItemKeyWordSearch';
 export default function DefaultLayout(props) {
     
     const navigate = useNavigate();
@@ -71,12 +64,39 @@ export default function DefaultLayout(props) {
        
     </Sider>
         <Layout>
+
         <Header style={{ height: 57, padding: 0, backgroundColor: "#15181E", borderBottom: "1px solid #ccc" }}>
-            <Button
-            type="text"
-            icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
-            onClick={() => setCollapsed(!collapsed)}
-            style={navBtnStyle} />
+            
+    <Row wrap={false}>
+      
+    <Col lg={{ span: 8 }}>
+
+        <Button
+              type="text"
+              icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
+              onClick={() => setCollapsed(!collapsed)}
+              style={navBtnStyle} /> 
+
+      </Col>
+
+        <Col lg={{ span: 8 }}>
+          <ItemKeyWordSearch />
+        </Col>
+
+        <Col lg={{ span: 8 }}>
+          cart
+        </Col>
+
+      
+    </Row>
+            
+            
+            
+            
+            
+          
+
+
         </Header>
         
         <Content style={contentStyle}> {props.children} </Content>
