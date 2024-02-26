@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { MenuFoldOutlined, MenuUnfoldOutlined, ShopOutlined } from '@ant-design/icons';
 import { TagsOutlined, ScanOutlined, WalletOutlined } from '@ant-design/icons';
-import { ConfigProvider } from 'antd';
+import { ConfigProvider, theme } from 'antd';
 import { Layout, Button, Col, Row } from 'antd';
 import ItemKeyWordSearch from '../item/ItemKeyWordSearch';
 export default function DefaultLayout(props) {
@@ -11,9 +11,14 @@ export default function DefaultLayout(props) {
     const navigate = useNavigate();
     const goToRoute = (evt)=>navigate(evt.target.getAttribute('data'));
     
+
+    const { defaultAlgorithm, darkAlgorithm } = theme;
     const { Header, Sider, Content } = Layout;
     const [collapsed, setCollapsed] = useState(false);
     const themeOverRide = {
+
+     
+
         token: {
         // colorPrimary: '#202327',
         // borderRadius: 0,
@@ -40,7 +45,9 @@ export default function DefaultLayout(props) {
       };
 
     return (
-    <ConfigProvider theme={themeOverRide}>
+    <ConfigProvider theme={{
+      algorithm: darkAlgorithm,
+    }}>
     <Layout>
     <Sider trigger={null} collapsible collapsed={collapsed}  style={{backgroundColor: "#202327"}}>
       

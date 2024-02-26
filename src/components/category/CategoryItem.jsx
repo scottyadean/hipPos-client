@@ -11,9 +11,9 @@ const getIcon = (name)=> {
 export default function CategoryItem(props) {
     const { data, callback } = props;
     const ListItem = (item, index) => {
-        return (<div className='cat-list'>
+        return (<div key={`cat-${index}`} className='cat-list'>
                     {getIcon(item.image)} 
-                    <a href="javascript:void(0)" className='link' data-index={index} onClick={callback} data-id={item._id} >{item.name}</a> 
+                    <a href="#" className='link' data-index={index} onClick={callback} data-id={item._id} >{item.name}</a> 
                 </div>);
     }
     

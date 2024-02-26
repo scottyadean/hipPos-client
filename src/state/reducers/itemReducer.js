@@ -17,6 +17,11 @@ export const setItemsReducer = (state, action) => {
     state.status = 'loaded';
 };
 
+export const appendNewItem = ( state, action ) => {
+    const item = action.payload.result;
+    state.rows.push(item);
+}
+
 export const filterItemsByCatReducer = ( state, action ) => {
     const category = action.payload.id;
     state.data = state.rows.filter( r=>r.category === category );
@@ -49,11 +54,13 @@ export const ItemSlice = createSlice({
     initialState: itemInitialState,
     reducers:{
         setItem: setItemsReducer,
+        newItem: appendNewItem,
         filterByCategoryItems: filterItemsByCatReducer,
         filterItemsByLetter: filterItemsByLetterReducer,
         filterItemsByKeyword: filterItemsByKeywordReducer,
     }
 });
 
-export const { setItem, filterByCategoryItems, filterItemsByLetter, filterItemsByKeyword } = ItemSlice.actions;
+
+export const { setItem, newItem, filterByCategoryItems, filterItemsByLetter, filterItemsByKeyword } = ItemSlice.actions;
 export default ItemSlice.reducer;

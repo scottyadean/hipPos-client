@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 export const categoryInitialState = {
-    rows: [{ name: "Produce" }],
+    rows: [],
     data: [],
     history:[],
     selected: null,
@@ -11,7 +11,7 @@ export const categoryInitialState = {
 }
 
 export const setCategoryReducer = (state, action) => {
-    state.rows = action.payload.payload.result;
+    state.rows = action.payload.result;
     state.loading = false;
 };
 
