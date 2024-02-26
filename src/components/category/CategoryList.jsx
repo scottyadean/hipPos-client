@@ -3,7 +3,7 @@ import CategoryItem from './CategoryItem';
 import { filterByCat } from '../../state/actions/itemActions';
 import { filterItemsByKeyword } from '../../state/reducers/itemReducer';
 import { setSeleted } from '../../state/reducers/categoryReducer';
-
+import { Divider} from 'antd';
 //import { FilterOutlined } from '@ant-design/icons';
 
 export default function CategoryList() {
@@ -26,7 +26,8 @@ export default function CategoryList() {
 
   return (
       <>
-        <h3>Category { cats.selected &&  (<ResetCat />) }</h3>
+        <h3 className='pos-h3'>Category { cats.selected &&  (<ResetCat />) }</h3>
+        <Divider style={{borderBottom:"1px solid #333", padding:0, margin: 5}} />
         <CategoryItem data={cats.rows} 
                       callback={SetItems} />
       </>
