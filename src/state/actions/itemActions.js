@@ -1,6 +1,5 @@
 import axios from "axios";
 import { setItem, newItem, filterByCategoryItems, filterItemsByLetter } from "../reducers/itemReducer"; 
-import { useDispatch } from "react-redux";
 
 export const getItemList = async ( dispatch ) => {
     //let headers = await getAuthHeader({ "Content-Type" : "application/json" }) 
@@ -12,20 +11,12 @@ export const getItemList = async ( dispatch ) => {
       });
 }
 
-export const createItem = async (data) => {
-
-
-    
+export const createItem = async (data, dispatch) => {
     //http://localhost:3001/api
     const headers = { "Content-Type" : "application/json" };
     const url  = `http://localhost:3001/api/item/create`;
-
     axios.post(url,  data,  { headers}).then((res)=>{
-        
-        const dispatch = useDispatch();
-        dispatch(newItem(res.data));
-
-        
+        dispatch(newItem(res.data));        
     });
 }
 

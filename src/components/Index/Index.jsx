@@ -1,6 +1,7 @@
 import { Row, Col } from 'antd';
-import CategoryList from "../category/CategoryList"
-import ItemList from "../item/ItemList"
+import CategoryList from '../category/CategoryList';
+import ItemList from '../item/ItemList';
+import CartView from '../cart/CartView';
 import ItemLetterSearch from '../item/ItemLetterSearch';
 
 export default function Index() {
@@ -16,7 +17,7 @@ export default function Index() {
           <ItemList />  
         </Col>
         <Col span={12}>
-          TEST
+          <CartView />
         </Col>
     </Row>
 

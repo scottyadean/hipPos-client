@@ -1,21 +1,35 @@
-//import React from 'react'
+import PropTypes from 'prop-types';
 import { Col, Divider, Row } from 'antd';
-import { useSelector } from 'react-redux';
-export default function ItemList() {
-    const items = useSelector((state) => state.items)
-    const ItemDisplay = (props)=> {
-      const { item } = props;
-      
+import { CheckCircleOutlined } from '@ant-design/icons';
+import { useSelector, useDispatch } from 'react-redux';
+import { selectItem, addToCart } from '../../state/reducers/itemReducer';
+
+ItemList.propTypes = {
+  displayEdit: PropTypes.any
+}
+
+export default function ItemList(props) {
+
+    const { displayEdit } = props
+    const items = useSelector((state) => state.items);
+    const dispatch = useDispatch();
+    
+    const ItemDisplay = (data)=> {
+      const { item } = data;
       return (
             <Row gutter={1} >
-            <Col span={12}>
+            <Col span={10}>
               {item.name}
             </Col>
             <Col span={10}>
               {item.price}
             </Col>
-            <Col span={2}>
-              +
+            <Col span={3}>
+
+              { displayEdit && (<a onClick={(_)=>dispatch(selectItem({_id: item._id, reset:false}))}>e</a> )}   
+
+              <CheckCircleOutlined onClick={(_)=>dispatch(addToCart( {item:item, count: 1} ))} />
+
             </Col>
           </Row>);
 

@@ -12,19 +12,16 @@ export default function DefaultLayout(props) {
     const goToRoute = (evt)=>navigate(evt.target.getAttribute('data'));
     
 
-    const { defaultAlgorithm, darkAlgorithm } = theme;
+    const {  darkAlgorithm } = theme;
     const { Header, Sider, Content } = Layout;
     const [collapsed, setCollapsed] = useState(false);
-    const themeOverRide = {
-
-     
-
-        token: {
-        // colorPrimary: '#202327',
-        // borderRadius: 0,
-        // colorBgContainer: '#202327',
-        },
-    }; 
+    // const themeOverRide = {
+    //     token: {
+    //     // colorPrimary: '#202327',
+    //     // borderRadius: 0,
+    //     // colorBgContainer: '#202327',
+    //     },
+    // }; 
     
     const navBtnStyle = {
         fontSize: '15px',

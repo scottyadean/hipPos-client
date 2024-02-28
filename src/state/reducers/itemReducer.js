@@ -4,14 +4,15 @@ export const itemInitialState = {
     rows: [],
     data: [],
     history:[],
-    selected: null,
+    cart: {},
+    selected: {},
     status: 'init',
     loading: true,
     error: null
 }
 
 export const setItemsReducer = (state, action) => {
-    state.rows = action.payload.result;
+    state.rows = [...action.payload.result];
     state.data = state.rows;
     state.loading = false;
     state.status = 'loaded';
@@ -19,6 +20,10 @@ export const setItemsReducer = (state, action) => {
 
 export const appendNewItem = ( state, action ) => {
     const item = action.payload.result;
+    console.log("---------------------------");
+    console.log(item);
+    console.log("---------------------------");
+    
     state.rows.push(item);
 }
 
@@ -43,10 +48,36 @@ export const filterItemsByKeywordReducer = ( state, action ) => {
     state.data = state.rows.filter((r) => containsValue(r.name, term) );
 };
 
+
+export const addItemToCart = ( state, action ) => {
+    
+    const incoming = action.payload;
+
+    if( Object.prototype.hasOwnProperty.call(state.cart, incoming.item._id) ){
+        
+        console.log(incoming);
+        
+        state.cart[incoming.item._id].count += incoming.count;
+        state.cart[incoming.item._id].price = ( state.cart[incoming.item._id].count * incoming.item.price ); 
+    }else{
+        state.cart[incoming.item._id] = { count: incoming.count, item: incoming.item, price: incoming.item.price };
+    }
+
+   // state.cart = {...state.cart}
+
+}
+
 export const selectItemById = ( state, action ) => {
-    const id = action.payload.id;
-    const item = state.rows.filter((r) => r.id === id );
-    state.selected = item[0]; 
+    
+
+    if( action.payload.reset === true ){
+        state.selected = {};
+    }else{
+        const id = action.payload._id;
+        const item = state.rows.filter((r) => r._id === id );
+        console.log(item[0]);
+        state.selected = {...item[0]};
+    }
 }
 
 export const ItemSlice = createSlice({
@@ -55,6 +86,8 @@ export const ItemSlice = createSlice({
     reducers:{
         setItem: setItemsReducer,
         newItem: appendNewItem,
+        selectItem: selectItemById,
+        addToCart: addItemToCart,
         filterByCategoryItems: filterItemsByCatReducer,
         filterItemsByLetter: filterItemsByLetterReducer,
         filterItemsByKeyword: filterItemsByKeywordReducer,
@@ -62,5 +95,8 @@ export const ItemSlice = createSlice({
 });
 
 
-export const { setItem, newItem, filterByCategoryItems, filterItemsByLetter, filterItemsByKeyword } = ItemSlice.actions;
+export const { setItem, newItem, filterByCategoryItems, 
+               filterItemsByLetter, filterItemsByKeyword,
+               selectItem, addToCart
+            } = ItemSlice.actions;
 export default ItemSlice.reducer;

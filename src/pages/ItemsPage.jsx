@@ -1,24 +1,17 @@
 //import React from 'react'
 import ItemForm from '../components/item/ItemForm';
+
+import { useDispatch, useSelector } from 'react-redux'; 
+
 export default function ItemsPage() {
 
-  const fakeItem = {
-    "name": "Test",
-    "brand": "Brand",
-    "description": "Test",
-    "sku": "123",
-    "price": 10.9,
-    "qty": 1,
-    "status": "active",
-    "category": "65d0b15eec918552395d163f",
-    "sub_category": "Test"
-  };
+
+  const items = useSelector((state) => state.items)
+
 
   return (
-    <div>
-      Add Items 
-      <ItemForm item={fakeItem} />
+    <div> 
+      <ItemForm item={items.selected} dispatch={useDispatch()} />
     </div>
-
   )
 }
