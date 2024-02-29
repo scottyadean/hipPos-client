@@ -64,12 +64,30 @@ export const addItemToCart = ( state, action ) => {
     }
 
    // state.cart = {...state.cart}
+}
+
+export const removeItemFromCart = (state, action) => {
+
+
+    const incoming = action.payload;
+
+    if( Object.prototype.hasOwnProperty.call(state.cart, incoming.item._id) ){
+
+        if ( state.cart[incoming.item._id].count > 1 ){
+            state.cart[incoming.item._id].count -= 1;
+            state.cart[incoming.item._id].price = ( state.cart[incoming.item._id].count * incoming.item.price ); 
+        }else{ 
+           delete(state.cart[incoming.item._id] ); 
+        }
+        
+    }
+
 
 }
 
+
 export const selectItemById = ( state, action ) => {
     
-
     if( action.payload.reset === true ){
         state.selected = {};
     }else{
@@ -88,6 +106,7 @@ export const ItemSlice = createSlice({
         newItem: appendNewItem,
         selectItem: selectItemById,
         addToCart: addItemToCart,
+        removeFromCart: removeItemFromCart,
         filterByCategoryItems: filterItemsByCatReducer,
         filterItemsByLetter: filterItemsByLetterReducer,
         filterItemsByKeyword: filterItemsByKeywordReducer,
@@ -97,6 +116,6 @@ export const ItemSlice = createSlice({
 
 export const { setItem, newItem, filterByCategoryItems, 
                filterItemsByLetter, filterItemsByKeyword,
-               selectItem, addToCart
+               selectItem, addToCart, removeFromCart
             } = ItemSlice.actions;
 export default ItemSlice.reducer;
