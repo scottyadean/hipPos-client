@@ -31,6 +31,30 @@ html, body {
   display: none;
 }
 
+
+.header { 
+  height: 57px; 
+  padding: 0; 
+  background-color: #15181E; 
+  border-bottom: 1px solid #ccc; 
+}
+
+
+.wrapper {
+  min-height: 100%;
+  margin-bottom: -60px;
+}
+ .push {
+  height: 50px;
+}
+
+.footer {
+  height: 50px;
+  width: 100%;
+}
+
+
+
 .menu-left{
   padding: 0px;
   margin: 0px;
@@ -42,25 +66,37 @@ html, body {
   height: 40px;
   padding-top: 10px;
   color: #f6f6f6;
-  padding-left: 10px;
+  padding-left: 0px;
+
+}
+
+.menu-left li button{
+
+  background-color: #202327;
+  color: #f6f6f6;
+  width: 100%;
+  border: none;
+  outline: none;
+  height: inherit;
   cursor: pointer;
   font-size: 16px;
 }
 
-.menu-left li:hover {
-  background-color: #ccc;
-  color: #000;
+.menu-left li.selected button{
+  background-color: rgb(21, 24, 30);
 }
 
-.menu-left li.selected {
-  background-color: rgb(21, 24, 30);
-  color: #f6f6f6;
-}
+.menu-left li button:hover {
+  background-color: #ccc;
+  color: #000;
+} 
+
+
 
 .ant-layout-sider-collapsed .menu-left li{
   font-size: 30px;
   padding-top: 0px;
-  padding-left: 20px;
+  padding-left: 0px;
 } 
 
 .ant-layout-sider-collapsed .menu-left li span.menu-txt{
@@ -96,18 +132,7 @@ html, body {
   
 }
 
-.wrapper {
-  min-height: 100%;
-  margin-bottom: -60px;
-}
- .push {
-  height: 50px;
-}
 
-.footer {
-  height: 50px;
-  width: 100%;
-}
 
 
 .pos-h3{

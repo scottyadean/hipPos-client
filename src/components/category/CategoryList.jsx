@@ -13,7 +13,8 @@ export default function CategoryList() {
 
     return (
       <a onClick={  ()=> { dispatch( setSeleted( null )  ); 
-                           dispatch( filterItemsByKeyword({ term: "" }) ) }  
+                           dispatch( filterItemsByKeyword({ term: "" }) );
+                          }  
                  }>clear</a>
     );
   }
