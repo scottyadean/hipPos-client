@@ -1,8 +1,10 @@
 import PropTypes from 'prop-types';
-import { Col, Divider, Row } from 'antd';
+import { Col, Divider, Row, Button } from 'antd';
 import { CheckCircleOutlined } from '@ant-design/icons';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectItem, addToCart } from '../../state/reducers/itemReducer';
+
+import StringUtils from '../../utils/strings';
 
 ItemList.propTypes = {
   displayEdit: PropTypes.any
@@ -17,18 +19,19 @@ export default function ItemList(props) {
     const ItemDisplay = (data)=> {
       const { item } = data;
       return (
-            <Row gutter={1} >
-            <Col span={10}>
-              {item.name}
+            <Row gutter={0} >
+            <Col span={18} onClick={()=>dispatch(addToCart( {item:item, count: 1} ))} style={{cursor:"pointer"}}>
+              {StringUtils.truncate(item.name) }
             </Col>
-            <Col span={10}>
-              {item.price}
+            <Col span={4}>
+              {StringUtils.currency(item.price)}
             </Col>
-            <Col span={3}>
+            <Col span={2} className='mb-5' >
 
-              { displayEdit && (<a onClick={(_)=>dispatch(selectItem({_id: item._id, reset:false}))}>e</a> )}   
+              { displayEdit && (<a onClick={()=>dispatch(selectItem({_id: item._id, reset:false}))}>e</a> )} 
+                <Button size='small' icon={<CheckCircleOutlined  />}  onClick={()=>dispatch(addToCart( {item:item, count: 1} ))} />
 
-              <CheckCircleOutlined onClick={(_)=>dispatch(addToCart( {item:item, count: 1} ))} />
+                
 
             </Col>
           </Row>);

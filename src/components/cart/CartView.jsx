@@ -1,5 +1,5 @@
 //import React from 'react'
-import { removeFromCart } from '../../state/reducers/itemReducer';
+import { removeFromCart, updateCartCount } from '../../state/reducers/itemReducer';
 import { useSelector, useDispatch } from "react-redux";
 import { Divider} from 'antd';
 import CartItem from './CartItem';
@@ -27,8 +27,9 @@ export default function CartView() {
         <tbody>
         { formatCartItems(cart).map( (item, idx)=>( <CartItem 
                                                       item={item} 
-                                                      key={idx} 
-                                                      callback={ removeFromCart } 
+                                                      key={idx}
+                                                      callback={ removeFromCart }
+                                                      changeQty={ updateCartCount } 
                                                       dispatch={dispatch} /> ) )  }
         </tbody>
     </table>

@@ -10,18 +10,16 @@ export default function Index() {
       <div className="wrapper">
       
     <Row>
-        <Col span={6}>
+        <Col span={4}>
           <CategoryList />
         </Col>
-        <Col span={6}>
+        <Col span={8}>
           <ItemList />  
         </Col>
-        <Col span={12}>
+        <Col span={12} className='cart-list'>
           <CartView />
         </Col>
     </Row>
-
-
 
         <div className="push"></div>  
       </div>

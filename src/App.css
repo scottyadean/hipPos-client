@@ -89,8 +89,6 @@ html, body {
   color: #000;
 } 
 
-
-
 .ant-layout-sider-collapsed .menu-left li{
   font-size: 30px;
   padding-top: 0px;
@@ -116,6 +114,11 @@ html, body {
 
 .cat-list{
   padding: 5px;
+}
+
+.cart-list{
+  border-left: 2px solid #333;
+  padding-left: 10px;
 }
 
 .letter-search{ 
@@ -147,3 +150,23 @@ html, body {
   padding: 0px;
   margin: 0px;
 }
+
+
+.sm-input{
+  border: none;
+  border-radius: 5px 0px 0px 5px;
+  outline: none;
+  background-color: #202327;
+  color: #f6f6f6;
+  height: 25px;
+}
+
+.sm-btn{
+  border-radius: 0px 5px 5px 0px;
+  outline: none;
+  height: 25px;
+  cursor: pointer;
+}
+
+
+

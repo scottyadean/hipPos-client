@@ -48,46 +48,48 @@ export const filterItemsByKeywordReducer = ( state, action ) => {
     state.data = state.rows.filter((r) => containsValue(r.name, term) );
 };
 
-
 export const addItemToCart = ( state, action ) => {
-    
     const incoming = action.payload;
-
-    if( Object.prototype.hasOwnProperty.call(state.cart, incoming.item._id) ){
-        
-        console.log(incoming);
-        
-        state.cart[incoming.item._id].count += incoming.count;
-        state.cart[incoming.item._id].price = ( state.cart[incoming.item._id].count * incoming.item.price ); 
+    const id = incoming.item._id;
+    if( Object.prototype.hasOwnProperty.call(state.cart, id) ){        
+        state.cart[id].count += incoming.count;
+        state.cart[id].price = ( state.cart[id].count * state.cart[id].item.price ); 
     }else{
-        state.cart[incoming.item._id] = { count: incoming.count, item: incoming.item, price: incoming.item.price };
+        state.cart[id] = { count: incoming.count, item: incoming.item, price: incoming.item.price };
     }
-
-   // state.cart = {...state.cart}
 }
 
 export const removeItemFromCart = (state, action) => {
-
-
     const incoming = action.payload;
-
-    if( Object.prototype.hasOwnProperty.call(state.cart, incoming.item._id) ){
-
-        if ( state.cart[incoming.item._id].count > 1 ){
-            state.cart[incoming.item._id].count -= 1;
-            state.cart[incoming.item._id].price = ( state.cart[incoming.item._id].count * incoming.item.price ); 
+    const id = incoming.item._id;
+    if( Object.prototype.hasOwnProperty.call(state.cart, id) ){
+        if ( state.cart[id].count > 1 ){
+            state.cart[id].count -= 1;
+            state.cart[id].price = ( state.cart[id].count * state.cart[id].item.price ); 
         }else{ 
-           delete(state.cart[incoming.item._id] ); 
+           delete(state.cart[id] ); 
         }
-        
+    }
+}
+
+export const updateItemCartCount = ( state, action ) => {
+
+    const count = action.payload.count;
+    const id = action.payload.id;
+
+    if ( count > 0 ){
+        state.cart[id].count = count;
+        state.cart[id].price = ( state.cart[id].count * state.cart[id].item.price );
+    }else{
+        delete(state.cart[id] );
     }
 
+    
 
 }
 
 
 export const selectItemById = ( state, action ) => {
-    
     if( action.payload.reset === true ){
         state.selected = {};
     }else{
@@ -106,6 +108,7 @@ export const ItemSlice = createSlice({
         newItem: appendNewItem,
         selectItem: selectItemById,
         addToCart: addItemToCart,
+        updateCartCount: updateItemCartCount,
         removeFromCart: removeItemFromCart,
         filterByCategoryItems: filterItemsByCatReducer,
         filterItemsByLetter: filterItemsByLetterReducer,
@@ -116,6 +119,7 @@ export const ItemSlice = createSlice({
 
 export const { setItem, newItem, filterByCategoryItems, 
                filterItemsByLetter, filterItemsByKeyword,
-               selectItem, addToCart, removeFromCart
+               selectItem, addToCart, removeFromCart,
+               updateCartCount
             } = ItemSlice.actions;
 export default ItemSlice.reducer;
